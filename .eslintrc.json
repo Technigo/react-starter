@@ -21,6 +21,9 @@
       "modules": true
     }
   },
+  "plugins": [
+    "react-hooks"
+  ],
   "rules": {
     "arrow-body-style": "off",
     "class-methods-use-this": "off",
@@ -109,14 +112,12 @@
       }
     ],
     "react/no-string-refs": "error",
-    "react/prefer-stateless-function": "off", // TODO change back to "warn" soon, once we go through stateless functions
     "react/prop-types": "off",
     "react/require-extension": "off",
     "react/sort-comp": "off",
     "react/jsx-indent": "off",
-    "semi": [
-      "error",
-      "never"
-    ]
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "semi": "off"
   }
 }
