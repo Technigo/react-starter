@@ -102,6 +102,7 @@
     "react/jsx-wrap-multilines": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
     "react/no-danger": "off",
     "react/no-did-mount-set-state": "error",
     "react/no-did-update-set-state": "error",
