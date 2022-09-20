@@ -1,5 +1,4 @@
 {
-  "parser": "babel-eslint",
   "extends": [
     "airbnb"
   ],
@@ -13,6 +12,8 @@
     "browser": true
   },
   "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
     "sourceType": "module",
     "ecmaVersion": 2017,
     "ecmaFeatures": {
@@ -25,6 +26,13 @@
     "react-hooks"
   ],
   "rules": {
+    "react/function-component-definition": [
+      2,
+      {
+        "namedComponents": "arrow-function",
+        "unnamedComponents": "arrow-function"
+      }
+    ],
     "arrow-body-style": "off",
     "class-methods-use-this": "off",
     "brace-style": [
@@ -101,8 +109,6 @@
     "react/jsx-uses-react": "warn",
     "react/jsx-wrap-multilines": "off",
     "react/jsx-one-expression-per-line": "off",
-    "react/jsx-props-no-spreading": "off",
-    "react/no-array-index-key": "off",
     "react/no-danger": "off",
     "react/no-did-mount-set-state": "error",
     "react/no-did-update-set-state": "error",
