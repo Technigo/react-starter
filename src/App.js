@@ -1,28 +1,44 @@
-/* eslint-disable max-len */
 /* eslint-disable react/button-has-type */
 import React, { useEffect, useState } from 'react';
-import { HelloWorld } from 'components/HelloWorld';
+import { Details } from 'Details';
 
-// This defines a functional component called App.
-// The component is being exported using the export keyword so it can be used in other modules.
+// creates a state variable called pokemons and a function called setPokemons
+// to change its value. The initial value of pokemons is an empty array. */
 export const App = () => {
-  // This line declares a state variable called visible and a function to update that state called setVisible.
-  // The useState function is called with an initial state value of false.
-  const [visible, setVisible] = useState(false);
+  const [pokemons, setPokemons] = useState([]);
+  const [selectedPokemon, setSelectedPokemon] = useState();
+  console.log(pokemons);
+  console.log(setPokemons);
 
+  // fetchingPokemons is a function that sends an HTTP GET request to the
+  // PokeAPI to fetch a list of Pokemon.
+  // It then converts the response to JSON using .json()
+  // and sets the list of Pokemon to the pokemons state variable using setPokemons .
+  const fetchingPokemons = () => {
+    fetch('https://pokeapi.co/api/v2/pokemon')
+      .then((respnse) => respnse.json())
+      .then((data) => setPokemons(data.results));
+  };
+
+  // useEffect is a hook that takes a function and an array of dependencies
   useEffect(() => {
-    console.log('state', visible);
-  }, [visible]);
-  // This is a button element that has an onClick handler attached to it.
-  // When the button is clicked, the setVisible function is called with a callback function that toggles the value of visible.
-  // This allows us to show or hide the HelloWorld component based on the current value of visible.
+    fetchingPokemons();
+  }, []);
+  // pokemon is an object here in the pokemons array
   return (
     <div>
-      <button onClick={() => setVisible((prev) => !prev)}> Show / Hide </button>
-      {visible && <HelloWorld />}
+      <ul>
+        {pokemons.map((pokemonObject) => (
+          <li key={pokemonObject.name}>
+            <button onClick={() => setSelectedPokemon(pokemonObject)}>
+              {pokemonObject.name}
+            </button>
+          </li>
+        ))}
+      </ul>
+      {selectedPokemon && (
+        <Details name={selectedPokemon.name} url={selectedPokemon.url} />
+      )}
     </div>
   );
 };
-// This is a conditional rendering of the HelloWorld component.
-// If visible is truthy (i.e., not false, 0, null, undefined, etc.), the HelloWorld component is rendered.
-// Otherwise, nothing is rendered.
